@@ -1,2 +1,2 @@
-from .reader import getGPSfromImage
-from .writer import setGPSinImage
+from .reader import getGPS
+from .writer import setGPS

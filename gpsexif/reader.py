@@ -3,7 +3,15 @@ import numpy as np
 from PIL import Image
 
 
-def getGPSfromImage(img_path):
+def getGPS(img_path: str) -> np.ndarray:
+    """ Get GPS location from image's EXIF.
+
+    Args:
+        img_path (str): path of image.
+
+    Returns:
+        np.ndarray: [latitude, longitude, altitude].
+    """
     img = Image.open(img_path)
     if isinstance(img.info, dict):
         exif_dict = piexif.load(img.info["exif"])
@@ -29,8 +37,3 @@ def __dict2Loc(dct):
     M = dct[2][0] / dct[2][1]
     loc = D + F / 60 + M / 3600
     return loc
-
-
-if __name__ == "__main__":
-    img_path = "output/tyg.jpg"
-    print(getGPSfromImage(img_path))

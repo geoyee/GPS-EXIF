@@ -4,9 +4,19 @@ import time
 import piexif
 import numpy as np
 from PIL import Image
+from typing import Union, List, Tuple
 
 
-def setGPSinImage(img_path, loc, save_dir="output"):
+def setGPS(img_path: str, 
+           loc: Union[List, Tuple, np.ndarray], 
+           save_dir: str="output") -> None:
+    """ Set GPS location into image's EXIF.
+
+    Args:
+        img_path (str): path of raw image.
+        loc (Union[List, Tuple, np.ndarray]): location, lenght must be 2/3.
+        save_dir (str, optional): folder of save image with GPS EXIF. Defaults to "output".
+    """
     file_name = img_path.split("/")[-1]
     ext = "PNG" if file_name.split(".")[-1] == "png" else "JPEG"
     img = Image.open(img_path)
@@ -60,9 +70,3 @@ def __getTime():
     b7 = ((int(HMS[0]), 1), (int(HMS[1]), 1), (int(HMS[2]), 1))
     b29 =  str(time.strftime("%Y:%m:%d", time.localtime())).encode("utf8")
     return b7, b29
-
-
-if __name__ == "__main__":
-    img_path = "input/tyg.jpg"
-    loc = [114.353458, 30.53624997, 363.5164]
-    setGPSinImage(img_path, loc)
