@@ -10,7 +10,8 @@ def getGPSfromImage(img_path):
         gps = exif_dict["GPS"]
         lon = __dict2Loc(gps[2]) * (1 if gps[1] == b"N" else -1)
         lat = __dict2Loc(gps[4]) * (1 if gps[3] == b"E" else -1)
-        return np.array([lat, lon])
+        alt = gps[6][0] / gps[6][1] * (1 if gps[5] == 0 else -1)
+        return np.array([lat, lon, alt])
     else:
         raise EXIFError("This photo has not EXIF!")
 
@@ -31,5 +32,5 @@ def __dict2Loc(dct):
 
 
 if __name__ == "__main__":
-    img_path = "testdata/whu.jpg"
+    img_path = "output/tyg.jpg"
     print(getGPSfromImage(img_path))

@@ -128,5 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# testdata
-testdata
+# test_data
+input
+output
