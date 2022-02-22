@@ -17,7 +17,7 @@ def setGPS(img_path: str,
         loc (Union[List, Tuple, np.ndarray]): location, lenght must be 2/3.
         save_dir (str, optional): folder of save image with GPS EXIF. Defaults to "output".
     """
-    file_name = img_path.split("/")[-1]
+    file_name = img_path.replace("\\", "/").split("/")[-1]
     ext = "PNG" if file_name.split(".")[-1] == "png" else "JPEG"
     img = Image.open(img_path)
     if isinstance(loc, (list, dict, np.ndarray)):

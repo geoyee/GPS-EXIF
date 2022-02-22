@@ -9,7 +9,7 @@ with open("requirements.txt", "r") as fin:
 
 setuptools.setup(
     name="gpsexif",
-    version="0.2",
+    version="0.3",
     author="geoyee",
     author_email="geoyee@yeah.net",
     description="Writing / Reading GPS coordinates in photo's EXIF by Python.",
